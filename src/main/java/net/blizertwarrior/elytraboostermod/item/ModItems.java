@@ -12,8 +12,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, ElytraBoosterMod.MODID);
 
     public static final RegistryObject<Item> ELYTRABOOSTERMK1 = ITEMS.register("elytraboostermk1",
-            () -> new Item
-                    (new Item.Properties()));
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
