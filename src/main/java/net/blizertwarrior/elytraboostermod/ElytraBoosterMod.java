@@ -1,6 +1,8 @@
 package net.blizertwarrior.elytraboostermod;
 
 import com.mojang.logging.LogUtils;
+import net.blizertwarrior.elytraboostermod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -8,7 +10,6 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -26,6 +27,8 @@ public class ElytraBoosterMod
     public ElytraBoosterMod(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
+
+        ModItems.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -45,10 +48,11 @@ public class ElytraBoosterMod
 
     }
 
-    // Add the example block item to the building blocks tab
+    // Add the example block item to the building blocks tab oftewel vanilla creative tabs
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS);
+            event.accept(ModItems.ELYTRABOOSTERMK1);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
